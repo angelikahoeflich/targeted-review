@@ -44,11 +44,11 @@ app.post('api/register', userCtrl.register)
 app.delete('api/logout', userCtrl.logout)
 
 //pun endpoints, userCtrl.
-app.get('/api/puns')
-app.get('/api/puns/:id')
-app.post('/api/puns')
-app.put('/api/puns/:id')
-app.delete('/api/puns/:id')
+app.get('/api/puns', punCtrl.getAllPuns)
+app.get('/api/puns/:id', punCtrl.getOnePun)
+app.post('/api/puns', checkUser, punCtrl.addPun)
+app.put('/api/puns/:id', checkUser, punCtrl.editPun)
+app.delete('/api/puns/:id', checkUser,punCpunCtrl.deletePun)
 
 
 

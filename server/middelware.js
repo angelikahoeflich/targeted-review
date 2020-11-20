@@ -1,11 +1,14 @@
 module.exports = {
   checkUser: async (req, res, next) => {
-    if(req.session.user.user_id){
-      next()
-    } else {
-      res.status(403).send( 'no user logged in')}
-  }
+  //   if(req.session.user){
+  //     next()
+  //   } else {
+  //     res.status(403).send( 'no user logged in')}
+  // }
+  next
 }
+}
+
 
 // steps of an axios request:
 
@@ -13,5 +16,4 @@ module.exports = {
 //2. app.use(session()) = puts a session object onto the request (req)
 //3. any request level middleware (see above)
 //4. controller 
-
 
