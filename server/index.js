@@ -6,6 +6,7 @@ const massive = require('massive');
 const session = require('express-session');
 const punCtrl = require('./punController');
 const userCtrl = require('./userController');
+const {checkUser} = require('./middelware');
 
 const {SESSION_SECRET, CONNECTION_STRING, SERVER_PORT} = process.env;
 
@@ -35,12 +36,22 @@ massive({
   console.log('db is connected yo')
 }).catch(err => console.log('database error' + err));
 
-//endpoints 
-app.get('/api/user')
-app.put('api/user')
-app.post('/api/login')
-app.post('api/register')
-app.delete('api/logout')
+// user endpoints 
+app.get('/api/user', checkUser, userCtrl.getUser)
+app.put('api/user', checkUser, userCtrl.editUser)
+app.post('/api/login', userCtrl.login)
+app.post('api/register', userCtrl.register)
+app.delete('api/logout', userCtrl.logout)
+
+//pun endpoints, userCtrl.
+app.get('/api/puns')
+app.get('/api/puns/:id')
+app.post('/api/puns')
+app.put('/api/puns/:id')
+app.delete('/api/puns/:id')
+
+
+
 
 app.listen(SERVER_PORT, console.log(`server running on port ${SERVER_PORT}`))
 
