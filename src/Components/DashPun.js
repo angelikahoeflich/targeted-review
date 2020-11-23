@@ -20,7 +20,7 @@ const DashPun = (props) => {
           >Cancel</button>
         <button 
         onClick={() => {
-          props.editPun(props.pin.pun_id, input),
+          props.editPun(props.pun.pun_id, input),
           setEdit(!edit)
         }}>Save</button>
       </div> )
